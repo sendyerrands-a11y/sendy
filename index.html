@@ -23,6 +23,22 @@
 <link rel="icon" href="assets/icons/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icons/favicon.png">
 
+<script>
+/* Applies a saved theme choice before first paint, so a visitor who picked
+   light doesn't get a flash of dark (or vice versa) on every page load.
+   Wrapped in try/catch: localStorage throws in private windows and when
+   site data is blocked, and the page must still render if it does.
+   With nothing saved, no attribute is set and prefers-color-scheme decides. */
+(function () {
+  try {
+    var t = localStorage.getItem('sendy-theme');
+    if (t === 'light' || t === 'dark') {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+  } catch (e) {}
+})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap">
@@ -292,6 +308,17 @@ p { margin: 0; color: var(--text-soft); }
 }
 .btn--light:hover { background: rgba(255,255,255,.24); }
 
+/* The literals above are safe on the coverage band, which is always a dark
+   cobalt. The final CTA is not: it sits on var(--text), which inverts to a
+   near-white panel in dark mode, leaving white-on-white. This derives from
+   the same tokens as that panel, so it reads in both themes. */
+.final .btn--light {
+  background: color-mix(in srgb, var(--bg) 14%, transparent);
+  border-color: color-mix(in srgb, var(--bg) 42%, transparent);
+  color: var(--bg);
+}
+.final .btn--light:hover { background: color-mix(in srgb, var(--bg) 24%, transparent); }
+
 .btn--lg { padding: 16px 28px; font-size: 16px; }
 
 /* ---------- header ---------- */
@@ -356,6 +383,36 @@ p { margin: 0; color: var(--text-soft); }
 .nav a:hover { color: var(--pink); }
 
 .head-cta { display: flex; align-items: center; gap: 10px; }
+
+.theme-btn {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 11px;
+  border: 1.5px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-soft);
+  display: grid;
+  place-items: center;
+  transition: color .2s ease, border-color .2s ease;
+}
+.theme-btn:hover { color: var(--pink); border-color: var(--pink); }
+.theme-btn svg { grid-area: 1 / 1; }
+
+/* The icon shows the theme you'd switch TO, and has to track the resolved
+   theme across the same three states the tokens do: system default, an
+   explicit light choice, and an explicit dark choice. */
+.theme-btn .i-sun { display: none; }
+.theme-btn .i-moon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-btn .i-sun { display: block; }
+  :root:not([data-theme="light"]) .theme-btn .i-moon { display: none; }
+}
+:root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+:root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+:root[data-theme="light"] .theme-btn .i-sun { display: none; }
+:root[data-theme="light"] .theme-btn .i-moon { display: block; }
 
 .burger {
   display: none;
@@ -1264,6 +1321,11 @@ p { margin: 0; color: var(--text-soft); }
     <div class="head-cta">
       <a href="tel:+2347047654376" class="btn btn--ghost">Call us</a>
       <a href="https://wa.me/2347047654376?text=Hello%20Sendy%20Errands%20%F0%9F%91%8B%0A%0AI%27d%20like%20to%20book%20an%20errand." target="_blank" rel="noopener" class="btn btn--pink">Book on WhatsApp</a>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch theme">
+        <svg class="i-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.1 6.1 4.6 4.6M19.4 19.4l-1.5-1.5M17.9 6.1l1.5-1.5M4.6 19.4l1.5-1.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        <svg class="i-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
       <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
       </button>
@@ -1885,7 +1947,43 @@ p { margin: 0; color: var(--text-soft); }
 </a>
 
 <script>
-// Mobile menu — the only scripted control on the page.
+// Theme toggle. The stylesheet already defines every colour for all three
+// states (system default, explicit light, explicit dark); this only stamps
+// data-theme on <html> and remembers the choice.
+(function () {
+  var btn = document.getElementById('theme-btn');
+  if (!btn) return;
+
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+  // The resolved theme: an explicit choice if one was made, else the OS.
+  function current() {
+    var set = document.documentElement.getAttribute('data-theme');
+    if (set === 'light' || set === 'dark') return set;
+    return mq.matches ? 'dark' : 'light';
+  }
+
+  function relabel() {
+    btn.setAttribute(
+      'aria-label',
+      current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+    );
+  }
+
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('sendy-theme', next); } catch (e) {}
+    relabel();
+  });
+
+  // Keep the label honest if the OS flips while no explicit choice is set.
+  mq.addEventListener('change', relabel);
+
+  relabel();
+})();
+
+// Mobile menu.
 (function () {
   var burger = document.getElementById('burger');
   var menu = document.getElementById('mobile-nav');
