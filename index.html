@@ -573,7 +573,10 @@ p { margin: 0; color: var(--text-soft); }
   .float--status { left: 8px; }
 }
 
-/* ---------- stats ---------- */
+/* ---------- stats ----------
+   Matches nothing right now. The strip it styles was removed for claiming
+   figures nobody had measured; kept so it can go straight back once the numbers
+   come from the database. */
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1379,10 +1382,7 @@ p { margin: 0; color: var(--text-soft); }
             <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7" fill="none"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Price agreed before we move
           </span>
-          <span class="chip">
-            <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.8 6.3.6-4.7 4.2 1.4 6.2L12 16.9 6.3 19.8l1.4-6.2L3 9.4l6.3-.6L12 3Z" stroke="currentColor" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            4.6 average rating
-          </span>
+          <!-- A "4.6 average rating" chip stood here. Unmeasured, so removed. -->
         </div>
       </div>
 
@@ -1408,22 +1408,13 @@ p { margin: 0; color: var(--text-soft); }
       </div>
     </div>
 
-    <div class="wrap">
-      <div class="stats">
-        <div class="stat">
-          <div class="stat__n">568+</div>
-          <div class="stat__l">Errands completed</div>
-        </div>
-        <div class="stat">
-          <div class="stat__n">30+</div>
-          <div class="stat__l">Verified riders</div>
-        </div>
-        <div class="stat">
-          <div class="stat__n">4.6 ★</div>
-          <div class="stat__l">Average customer rating</div>
-        </div>
-      </div>
-    </div>
+    <!--
+      The stats strip that stood here claimed 568+ errands, 30+ riders and a 4.6
+      average rating. None of it was measured — it came over from the original
+      site as placeholder copy. Numbers like these are a promise to a customer
+      and evidence in a dispute, so they only go back when they come from the
+      database.
+    -->
   </section>
 
   <!-- the black seal strip from the real Sendy mailer -->
@@ -1792,7 +1783,7 @@ p { margin: 0; color: var(--text-soft); }
         </details>
         <details>
           <summary>How do I pay?</summary>
-          <p>Cash or bank transfer, arranged directly with us once your rider is on the way. There's nothing to pay online.</p>
+          <p>Cash or bank transfer, arranged directly with us once your rider is on the way.</p>
         </details>
         <details>
           <summary>Can I follow my errand?</summary>
