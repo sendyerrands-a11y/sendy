@@ -1015,7 +1015,9 @@ p { margin: 0; color: var(--text-soft); }
   border: 1px solid var(--line);
   box-shadow: var(--shadow-md);
 }
-.ceo__photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+/* contain, not cover: the Rides artwork is a cut-out with its own
+   margins, and a 4/5 cover crop sliced the vehicle in half. */
+.ceo__photo img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; }
 .ceo h3 { font-size: 24px; font-weight: 700; }
 .ceo__role {
   font-family: var(--font-mono);
@@ -1679,30 +1681,36 @@ p { margin: 0; color: var(--text-soft); }
         </div>
       </div>
 
+      <!-- Was a CEO profile; now the product that is actually coming next. The
+           .ceo grid is reused because the shape is the same: one portrait
+           image beside a column of text. -->
       <div class="ceo">
         <div class="ceo__photo">
-          <img src="assets/images/ceo.jpg" alt="Bryan Isaac Ayankoya, Chief Executive Officer of Sendy Errands" loading="lazy" width="1024" height="1536">
+          <img src="assets/images/sendy-rides.png" alt="Sendy Rides — book rides and travel with Sendy Errands" loading="lazy" width="577" height="433">
         </div>
         <div>
-          <h3>Bryan Isaac Ayankoya</h3>
-          <div class="ceo__role">Chief Executive Officer</div>
+          <h3>Sendy Rides</h3>
+          <!-- "Coming soon" is load-bearing, not decoration: Rides cannot be
+               booked yet, and a page implying otherwise sends people looking
+               for a flow that does not exist. -->
+          <div class="ceo__role">Coming soon</div>
           <div class="ceo__body">
             <p>
-              Bryan Isaac Ayankoya is the Chief Executive Officer of Sendy Errands, a
-              technology-driven logistics and errands company focused on making everyday
-              deliveries faster, safer and more convenient.
+              We already move parcels across Lagos on a network of verified riders.
+              Sendy Rides is that same network turned around to carry you: the same
+              vetted riders, the same tracked trips, the same price agreed before
+              anyone sets off.
             </p>
             <p>
-              As CEO, Bryan provides the vision and leadership behind Sendy Errands,
-              working to build a reliable platform that connects customers, businesses,
-              vendors and delivery riders. His goal is a trusted local delivery network
-              that helps businesses serve their customers efficiently while giving
-              individuals easy access to dependable delivery.
+              No haggling at the junction, and no guessing what it should cost. You
+              will see the fare before you accept it, follow the trip from your phone,
+              and pay by card or from your Sendy wallet — exactly as you already do
+              for an errand.
             </p>
             <p>
-              Under his leadership, Sendy Errands is committed to innovation, customer
-              satisfaction, professional service, and creating opportunities within the
-              local delivery and logistics ecosystem.
+              Rides is in development and not yet bookable. It will appear inside the
+              Sendy Errands app the day it opens, so the account you already have is
+              the only thing you need to be ready for it.
             </p>
           </div>
           <p class="ceo__quote">Delivering convenience. Connecting businesses. Moving communities.</p>
