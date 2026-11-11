@@ -36,7 +36,7 @@
 
     <div class="nav__right">
       <a href="tel:+2347047654376" class="nav__help">Help</a>
-      <a href="#account" class="nav__help">Log in</a>
+      <a href="https://sendyerrands.com/login.php" class="nav__help">Log in</a>
       <a href="https://sendyerrands.com/book.php" target="_blank" rel="noopener" class="btn btn--white btn--sm">Book an errand</a>
       <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
@@ -50,7 +50,7 @@
   <a href="#how">How it works</a>
   <a href="#plan">Schedule</a>
   <a href="#why">Why Sendy</a>
-  <a href="#account">Log in</a>
+  <a href="https://sendyerrands.com/login.php">Log in</a>
   <a href="tel:+2347047654376">Call +234 704 765 4376</a>
   <a href="https://sendyerrands.com/book.php" target="_blank" rel="noopener" class="btn btn--white">Book an errand</a>
 </div>
@@ -204,10 +204,10 @@
     <div class="wrap account">
       <div>
         <h2>Log in to see your errands</h2>
-        <p>Your past errands, saved addresses and receipts, all in one place — so the next booking takes seconds instead of minutes.</p>
+        <p>Your past errands, saved addresses and receipts, all in one place &mdash; so the next booking takes seconds instead of minutes. You can also book as a guest with just a name and phone number; an account simply saves you retyping them.</p>
         <div class="account__actions">
-          <a class="btn btn--dark" href="#account">Log in to your account</a>
-          <a class="account__link" href="#account">Create an account</a>
+          <a class="btn btn--dark" href="https://sendyerrands.com/login.php">Log in to your account</a>
+          <a class="account__link" href="https://sendyerrands.com/register.php">Create an account</a>
         </div>
       </div>
       <div class="account__art">
@@ -267,14 +267,14 @@
             </li>
             <li>
               <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 7v5.2l3.2 3.2" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              We confirm the price on WhatsApp before a rider moves.
+              Your rider prices the items and you approve the figure before anyone moves.
             </li>
             <li>
               <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M5 12l4-4M5 12l4 4" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               Change or cancel any time before the rider sets off.
             </li>
           </ul>
-          <a class="plan__terms" href="https://sendyerrands.com/book.php" target="_blank" rel="noopener">Ask us anything</a>
+          <a class="plan__terms" href="https://sendyerrands.com/support.php" target="_blank" rel="noopener">Ask us anything</a>
         </aside>
       </div>
     </div>
@@ -284,32 +284,52 @@
   <section class="sec sec--tint" id="how">
     <div class="wrap">
       <h2 class="sec__title">Booking takes about a minute</h2>
+      <!--
+        These five steps mirror the live flow on sendyerrands.com, deliberately,
+        because this page is the advert for it and the two disagreeing is how a
+        customer ends up expecting something that will not happen.
+
+        What stood here described the old WhatsApp process: "message us", and
+        "we come back within minutes with a final figure". Errands are neither
+        booked nor priced that way any more. The rider prices the items from the
+        shop, and the customer approves or declines on their tracking page.
+      -->
       <div class="icards">
         <div class="icard">
           <div class="icard__plate"><img src="img/ill/s1-tell-us.png" alt="" loading="lazy"></div>
           <span class="icard__n">1</span>
           <h3>Tell us</h3>
-          <p>Message us with what you need, where it's coming from and where it's going.</p>
+          <p>Pick a service and fill in the details &mdash; what you need, where it's coming from and where it's going. No account needed.</p>
         </div>
         <div class="icard">
-          <div class="icard__plate"><img src="img/ill/s2-agree-price.png" alt="" loading="lazy"></div>
+          <div class="icard__plate"><img src="img/ill/s2-approve-price.svg" alt="" loading="lazy"></div>
           <span class="icard__n">2</span>
-          <h3>Agree the price</h3>
-          <p>We come back within minutes with a final figure. Nothing moves until you say yes.</p>
+          <h3>A rider prices it</h3>
+          <p>A verified rider nearby takes your errand, goes to the shop or market, and tells you what the items actually cost. Nobody guesses a price from a desk.</p>
         </div>
         <div class="icard">
           <div class="icard__plate"><img src="img/ill/s3-we-handle.png" alt="" loading="lazy"></div>
           <span class="icard__n">3</span>
-          <h3>We handle it</h3>
-          <p>A verified rider nearby picks it up and keeps you posted the whole way.</p>
+          <h3>You approve it</h3>
+          <p>The real figure lands on your tracking page. Approve it and the rider moves. Not happy with the price? Decline it, and that's the end of it.</p>
         </div>
         <div class="icard">
           <div class="icard__plate"><img src="img/ill/s4-done.png" alt="" loading="lazy"></div>
           <span class="icard__n">4</span>
-          <h3>Done, and paid</h3>
-          <p>Get your items, pay cash or transfer on completion, and rate how it went.</p>
+          <h3>We handle it</h3>
+          <p>Shopping, pickup or delivery &mdash; your rider takes care of it and the status updates on your tracking page as it moves.</p>
+        </div>
+        <div class="icard">
+          <div class="icard__plate"><img src="img/ill/account.png" alt="" loading="lazy"></div>
+          <span class="icard__n">5</span>
+          <h3>You get it done</h3>
+          <p>Receive your items or confirmation, rate how it went, and get on with your day.</p>
         </div>
       </div>
+      <p style="text-align:center; margin-top:26px;">
+        <a class="btn btn--dark" href="https://sendyerrands.com/book.php" target="_blank" rel="noopener">Book an errand</a>
+        <a class="btn btn--ghost" href="https://sendyerrands.com/track.php" target="_blank" rel="noopener" style="margin-left:10px;">Track an errand</a>
+      </p>
     </div>
   </section>
 
@@ -353,7 +373,7 @@
         <p>The small things — a market run, a pickup, a bill to pay — quietly eat the day. Hand them over and stay on what actually needs you.</p>
         <div class="feature__actions">
           <a class="btn btn--dark" href="https://sendyerrands.com/book.php">Submit errand request</a>
-          <a class="feature__link" href="#account">Already have an account? Log in</a>
+          <a class="feature__link" href="https://sendyerrands.com/login.php">Already have an account? Log in</a>
         </div>
       </div>
     </div>
@@ -377,7 +397,7 @@
         <div class="icard">
           <div class="icard__plate"><img src="img/ill/t-person.png" alt="" loading="lazy"></div>
           <h3>A person answers</h3>
-          <p>WhatsApp or phone during opening hours. No bot loop, no ticket number.</p>
+          <p>Call us or use Support during opening hours. No bot loop, no ticket number.</p>
         </div>
         <div class="icard">
           <div class="icard__plate"><img src="img/ill/t-truth.png" alt="" loading="lazy"></div>
@@ -437,23 +457,31 @@
         </details>
         <details>
           <summary>How do I book?</summary>
-          <p>Message us on WhatsApp, or call. Tell us what you need, where it's coming from and where it's going. There's no account to create and nothing to install.</p>
+          <p>Book on the website in about a minute &mdash; pick a service, say what you need and where it's going. You can book as a guest with just your name and phone number; nothing to install and no account required. The app does the same thing faster if you'd rather.</p>
+        </details>
+        <details>
+          <summary>Who decides the price, and when?</summary>
+          <p>Your rider does, once they are at the shop or market and can see what things actually cost. That figure lands on your tracking page for you to approve. Nothing is bought and no rider sets off until you do &mdash; and if the price isn't right, you decline and that is the end of it.</p>
         </details>
         <details>
           <summary>How much does it cost?</summary>
-          <p>Errands start from ₦1,000 to ₦1,500 depending on the type, then vary with distance and what's involved. We confirm the exact figure with you before a rider moves.</p>
+          <p>Errands start from ₦1,000 to ₦1,500 depending on the type, then vary with distance and what's involved. For shopping errands the item cost is separate from the dispatch fee, and both are shown to you to approve before a rider moves.</p>
         </details>
         <details>
           <summary>How do I pay?</summary>
-          <p>Cash or bank transfer, arranged directly with us once your rider is on the way.</p>
+          <p>For shopping errands you pay the seller directly using the account details on your tracking page, and settle the Sendy dispatch fee separately. Some errands offer pay-on-completion. Everything owing is shown before you approve.</p>
         </details>
         <details>
           <summary>Can I follow my errand?</summary>
-          <p>Yes. Every errand gets a reference and a clear status, and we message you as it moves — including if something goes wrong.</p>
+          <p>Yes. Every errand gets a reference and a live status you follow on the <a href="https://sendyerrands.com/track.php" target="_blank" rel="noopener">Track Order</a> page, from booking through to completion. Once a rider is assigned, their contact details appear there too.</p>
         </details>
         <details>
           <summary>What if something goes wrong with my order?</summary>
-          <p>Reach us on WhatsApp or by phone and a real person will sort it out, refund requests included.</p>
+          <p>Call us or use the <a href="https://sendyerrands.com/support.php" target="_blank" rel="noopener">Support</a> page with your order reference, and a real person will sort it out &mdash; refund requests and missing items included.</p>
+        </details>
+        <details>
+          <summary>What if something I asked for isn't available?</summary>
+          <p>Your rider calls you before swapping anything, so nothing is bought without your say-so.</p>
         </details>
         <details>
           <summary>What areas do you cover?</summary>
@@ -461,7 +489,7 @@
         </details>
         <details>
           <summary>When are you open?</summary>
-          <p>Monday to Saturday, 8:00 AM to 10:00 PM. Messages sent outside those hours get answered when we open.</p>
+          <p>Monday to Saturday, 8:00 AM to 10:00 PM. You can book at any time &mdash; errands placed outside those hours are picked up when we open.</p>
         </details>
       </div>
     </div>
@@ -508,7 +536,8 @@
         <h4>Get in touch</h4>
         <ul>
           <li><a href="tel:+2347047654376">+234 704 765 4376</a></li>
-          <li><a href="https://sendyerrands.com/book.php" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+          <li><a href="https://sendyerrands.com/track.php" target="_blank" rel="noopener">Track an errand</a></li>
+          <li><a href="https://sendyerrands.com/support.php" target="_blank" rel="noopener">Support</a></li>
           <li><a href="mailto:support@sendyerrands.com">support@sendyerrands.com</a></li>
           <li><span>Mon – Sat, 8:00 AM – 10:00 PM</span></li>
         </ul>
@@ -522,8 +551,17 @@
   </div>
 </footer>
 
-<a class="wa" href="https://sendyerrands.com/book.php" target="_blank" rel="noopener" aria-label="Chat with Sendy on WhatsApp">
-  <svg width="27" height="27" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.7.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.58-.34"/><path fill="currentColor" d="M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.45 6.6 2.01 12.05 2.01c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0 0 12.05.01C5.5.01.16 5.35.16 11.9c0 2.1.55 4.15 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9a11.82 11.82 0 0 0-3.48-8.41Z"/></svg>
+<!--
+  The floating WhatsApp button stood here: the WhatsApp glyph, labelled "Chat
+  with Sendy on WhatsApp", pointing at book.php. The business took WhatsApp out
+  of the booking loop, so it advertised a channel nobody is on and the icon
+  promised a chat window that was never going to open. Booking and support both
+  have real pages now and are linked in the nav and the footer.
+-->
+<a class="wa" href="https://sendyerrands.com/book.php" target="_blank" rel="noopener" aria-label="Book an errand">
+  <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M5 13.5h9.2l-3.6 3.6a1 1 0 1 0 1.4 1.4l5.3-5.3a1 1 0 0 0 0-1.4l-5.3-5.3a1 1 0 1 0-1.4 1.4l3.6 3.6H5a1 1 0 0 0 0 2Z" fill="currentColor"/>
+  </svg>
 </a>
 
 <script>
