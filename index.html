@@ -29,7 +29,7 @@
     <nav class="nav__links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#how">How it works</a>
-      <a href="#plan">Schedule</a>
+      <a href="#video">Watch</a>
       <a href="#why">Why Sendy</a>
       <a href="#faq">FAQ</a>
     </nav>
@@ -48,7 +48,7 @@
 <div class="mobile-nav" id="mobile-nav" data-open="false">
   <a href="#services">Services</a>
   <a href="#how">How it works</a>
-  <a href="#plan">Schedule</a>
+  <a href="#video">Watch</a>
   <a href="#why">Why Sendy</a>
   <a href="https://sendyerrands.com/login.php">Log in</a>
   <a href="tel:+2347047654376">Call +234 704 765 4376</a>
@@ -330,6 +330,55 @@
         <a class="btn btn--dark" href="https://sendyerrands.com/book.php" target="_blank" rel="noopener">Book an errand</a>
         <a class="btn btn--ghost" href="https://sendyerrands.com/track.php" target="_blank" rel="noopener" style="margin-left:10px;">Track an errand</a>
       </p>
+    </div>
+  </section>
+
+  <!-- =========================== VIDEO ============================ -->
+  <!--
+    Deliberately not autoplaying.
+
+    The clip is 34 seconds with real speech in it, so muting it to satisfy
+    autoplay rules would throw away the entire point, and playing 4MB
+    unprompted at a Lagos customer on mobile data is rude in a way that is
+    easy to miss from a desk on wifi. preload="metadata" fetches a few KB
+    until someone actually presses play.
+
+    playsinline matters on iPhones: without it Safari hijacks the tap and
+    throws the video into its own fullscreen player, which loses the page.
+  -->
+  <section class="sec" id="video">
+    <div class="wrap">
+      <h2 class="sec__title" style="text-align:center;">See Sendy in action</h2>
+      <p style="text-align:center; max-width:520px; margin:0 auto 28px; color:#5b5b66;">
+        Thirty seconds on why we built this, from the people who run your errands.
+      </p>
+
+      <div class="vid">
+        <div class="vid__frame">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="assets/video/sendy-in-action-poster.jpg"
+            width="576" height="1024">
+            <source src="assets/video/sendy-in-action.mp4" type="video/mp4">
+            <!-- Shown only where the tag or the codec is unsupported, so it has
+                 to lead somewhere real rather than apologise. -->
+            Your browser cannot play this video.
+            <a href="https://www.tiktok.com/@sendyerrands" target="_blank" rel="noopener">Watch it on TikTok</a> instead.
+          </video>
+        </div>
+
+        <p class="vid__note">More of these on our TikTok.</p>
+
+        <a class="btn btn--dark" href="https://www.tiktok.com/@sendyerrands"
+           target="_blank" rel="noopener" style="margin-top:14px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-2px; margin-right:8px;">
+            <path fill="currentColor" d="M16.3 2h-3.1v13.3a2.7 2.7 0 1 1-2.3-2.67v-3.15A5.85 5.85 0 1 0 16.3 15.1V8.3a7.4 7.4 0 0 0 4.4 1.44V6.6a4.3 4.3 0 0 1-4.4-4.6Z"/>
+          </svg>
+          Follow @sendyerrands
+        </a>
+      </div>
     </div>
   </section>
 

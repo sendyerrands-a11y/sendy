@@ -777,3 +777,21 @@ p { margin: 0; }
   box-shadow: 0 10px 26px rgba(37,211,102,.4);
 }
 .wa:hover { transform: scale(1.06); }
+
+/* ---------- video section ----------
+   The clip is 576x1024 — vertical, shot for TikTok. Framed at phone width
+   rather than stretched across the section, because a 9:16 video in a 16:9
+   slot is either letterboxed into a thin strip or cropped through the
+   speaker's face. */
+.vid { display: grid; place-items: center; }
+.vid__frame {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 16;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 18px 44px rgba(0,0,0,.18);
+}
+.vid__frame video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.vid__note { margin-top: 18px; font-size: 14px; color: var(--muted); text-align: center; }
