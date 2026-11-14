@@ -23,7 +23,7 @@
   <div class="wrap nav__in">
     <a href="#top" class="nav__brand" id="top">
       <img src="img/logo-badge.png" alt="">
-      Sendy
+      Sendy Errands
     </a>
 
     <nav class="nav__links" aria-label="Primary">
@@ -65,17 +65,65 @@
           <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.3" stroke="currentColor" stroke-width="1.9" fill="none"/></svg>
           <!-- Rendered with the real default, not a spinner: the page is correct
                before the IP lookup returns, and stays correct if it never does. -->
-          <span id="place">Lagos, Nigeria</span>
-          <button type="button" class="hero__change" id="change-city">Change city</button>
-          <select class="hero__city-select" id="city-select" aria-label="Choose your city" hidden>
-            <option>Lagos, Nigeria</option>
-            <option>Abuja, Nigeria</option>
-            <option>Ibadan, Nigeria</option>
-            <option>Port Harcourt, Nigeria</option>
-            <option>Benin City, Nigeria</option>
-            <option>Enugu, Nigeria</option>
-            <option>Kano, Nigeria</option>
-            <option>Abeokuta, Nigeria</option>
+          <!-- Must be one of the select's options verbatim: opening the picker
+               sets sel.value from this text, and an unmatched value blanks it. -->
+          <span id="place">Lagos</span>
+          <button type="button" class="hero__change" id="change-city">Change state</button>
+          <!--
+            States rather than a short list of cities, and all of them.
+
+            Eight cities meant anyone outside them had no way to say where they
+            were, which on a page whose whole job is "do you reach me?" reads as
+            "no". States are also the unit the rest of the system prices in —
+            the parcel fee is decided by whether a delivery crosses a state
+            line — so the vocabulary now matches end to end.
+
+            Grouped rather than one flat run of 37: alphabetical is right for
+            scanning a dropdown, but burying Lagos between Kwara and Nasarawa
+            when most visitors are in Lagos costs everyone a scroll.
+          -->
+          <select class="hero__city-select" id="city-select" aria-label="Choose your state" hidden>
+            <optgroup label="Where we are busiest">
+              <option>Lagos</option>
+              <option>FCT - Abuja</option>
+              <option>Rivers</option>
+              <option>Oyo</option>
+              <option>Kano</option>
+            </optgroup>
+            <optgroup label="All states">
+              <option>Abia</option>
+              <option>Adamawa</option>
+              <option>Akwa Ibom</option>
+              <option>Anambra</option>
+              <option>Bauchi</option>
+              <option>Bayelsa</option>
+              <option>Benue</option>
+              <option>Borno</option>
+              <option>Cross River</option>
+              <option>Delta</option>
+              <option>Ebonyi</option>
+              <option>Edo</option>
+              <option>Ekiti</option>
+              <option>Enugu</option>
+              <option>Gombe</option>
+              <option>Imo</option>
+              <option>Jigawa</option>
+              <option>Kaduna</option>
+              <option>Katsina</option>
+              <option>Kebbi</option>
+              <option>Kogi</option>
+              <option>Kwara</option>
+              <option>Nasarawa</option>
+              <option>Niger</option>
+              <option>Ogun</option>
+              <option>Ondo</option>
+              <option>Osun</option>
+              <option>Plateau</option>
+              <option>Sokoto</option>
+              <option>Taraba</option>
+              <option>Yobe</option>
+              <option>Zamfara</option>
+            </optgroup>
           </select>
         </span>
 
@@ -549,7 +597,7 @@
 <!-- includes/footer.php -->
 <footer class="foot">
   <div class="wrap">
-    <a href="#top" class="foot__brand"><img src="img/logo-badge.png" alt="">Sendy</a>
+    <a href="#top" class="foot__brand"><img src="img/logo-badge.png" alt="">Sendy Errands</a>
     <p class="foot__about">You have things to do. Sendy gets them done — market runs, pickups, deliveries and everyday errands.</p>
 
     <div class="foot__grid">
@@ -652,8 +700,17 @@
     if (open) sel.focus();
   }
 
+  /* Every value the picker can represent. Anything else must not reach the
+     label, because opening the picker does sel.value = the label text — and a
+     value with no matching option silently blanks the select. */
+  var KNOWN = Array.prototype.map.call(sel.options, function (o) { return o.value; });
+  var isKnown = function (v) { return KNOWN.indexOf(v) !== -1; };
+
+  /* Stored values used to be "Lagos, Nigeria" — a city-and-country string the
+     state list cannot match. A returning visitor would otherwise be pinned to
+     a label the picker could not open on. */
   var chosen = read();
-  if (chosen) el.textContent = chosen;
+  if (chosen && isKnown(chosen)) el.textContent = chosen;
 
   btn.addEventListener('click', function () {
     sel.value = el.textContent.trim();
@@ -668,12 +725,16 @@
 
   // Best-effort, and only when the visitor has not already chosen. Any failure
   // — offline, blocked, rate-limited, adblocker — leaves the default standing.
-  if (chosen) return;
+  if (chosen && isKnown(chosen)) return;
   fetch('https://get.geojs.io/v1/ip/geo.json')
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (d) {
-      if (!d || !d.city) return;
-      el.textContent = d.country ? d.city + ', ' + d.country : d.city;
+      if (!d) return;
+      /* region is the state; city is "Ikeja", which is in Lagos State but is
+         not a state. Reading the city was what produced labels the picker had
+         no option for. Anything unrecognised leaves the default standing,
+         which is the honest outcome for a guess that did not land. */
+      if (isKnown(d.region)) el.textContent = d.region;
     })
     .catch(function () {});
 })();
